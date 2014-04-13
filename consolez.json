@@ -12,5 +12,7 @@
 			"hash": "4c52d8bfd4a7ba5bd91b1149f89353848a769d0a7c1b2b08cd43ef683093ad59"
 		}
 	},
-	"bin": ["Console.exe", "consolez"]
+	"bin": [
+		["Console.exe", "consolez"]
+	]
 }

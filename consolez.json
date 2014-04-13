@@ -1,6 +1,6 @@
 {
-	"homepage": "http://sourceforge.net/projects/console/",
-	"version": "2.0.0.148",
+	"homepage": "https://github.com/cbucher/console",
+	"version": "1.10.0.14089",
 	"license": "GPLv2",
 	"architecture": {
 		"64bit": {

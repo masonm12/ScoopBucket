@@ -1,0 +1,17 @@
+{
+	"homepage": "http://sourceforge.net/projects/console/",
+	"version": "2.0.0.148",
+	"license": "GPLv2",
+	"architecture": {
+		"64bit": {
+			"url": "https://github.com/cbucher/console/releases/download/1.10.0/ConsoleZ.x64.1.10.0.zip",
+			"hash": "85a1ce863059d19b93066f24886fe6659da837ed04faaba3b8145c1c00c35f38"
+		},
+		"32bit": {
+			"url": "https://github.com/cbucher/console/releases/download/1.10.0/ConsoleZ.x86.1.10.0.zip",
+			"hash": "4c52d8bfd4a7ba5bd91b1149f89353848a769d0a7c1b2b08cd43ef683093ad59"
+		}
+	},
+	"extract_dir": "ConsoleZ",
+	"bin": ["Console.exe", "consolez"]
+}

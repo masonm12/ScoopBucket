@@ -4,8 +4,8 @@
     "license": "Boostv1.0, https://raw.githubusercontent.com/D-Programming-Language/dmd/master/src/backendlicense.txt",
     "url": "http://downloads.dlang.org/releases/2014/dmd.2.065.0.zip",
     "hash": "sha1:cff1d0978736b2c83c63450fbc0a0692c7ecba68",
-    "extract_dir": "dmd2/windows",
-    "bin": ["bin/dmd.exe", "bin/rdmd.exe"],
+    "extract_dir": "dmd2",
+    "bin": ["windows/bin/dmd.exe", "windows/bin/rdmd.exe"],
     "post_install": "
         function getVSPath($version) {
             \"hklm:/software/wow6432node/microsoft/visualstudio/$version/setup/vc\", 
@@ -31,7 +31,7 @@
         $vspath, $vsprefix = $vsprefixmap.keys | % {$out = @{}} {$out[$_] = getVSPath $_} {$out.getenumerator()} |
             ? {$_.value} | sort @{e={$_.key -as [float]}; descending=$true} | select -first 1 | % {$_.value, $vsprefixmap[$_.key]}
         $wdkpath = 'v8.1a', 'v8.0a', 'v7.1a', 'v7.0a', 'v6.0a' | % {getWSDKPath $_} | ? {$_} | select -first 1
-        $inifile = \"$dir/bin/sc.ini\"
+        $inifile = \"$dir/windows/bin/sc.ini\"
         if (!$vspath) {
             'Could not detect Visual Studio (2008-2013 are supported). Using defaults.'
         }

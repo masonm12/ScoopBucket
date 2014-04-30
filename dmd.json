@@ -1,26 +1,37 @@
 {
-	"homepage": "http://dlang.org/",
-	"version": "2.065.0",
-	"license": "Boostv1.0, https://raw.githubusercontent.com/D-Programming-Language/dmd/master/src/backendlicense.txt",
-	"url": "http://downloads.dlang.org/releases/2014/dmd.2.065.0.zip",
-	"hash": "sha1:cff1d0978736b2c83c63450fbc0a0692c7ecba68",
-	"extract_dir": "dmd2/windows",
-	"bin": ["bin/dmd.exe", "bin/rdmd.exe"],
-	"post_install": "
-		function getVSPath($version) {
-			\"hklm:/software/wow6432node/microsoft/visualstudio/$version/setup/vc\", 
-			\"hklm:/software/microsoft/visualstudio/$version/setup/vc\" |
-			? {(test-path $_)} | select-object -first 1 | % {(get-itemproperty $_).productdir}
-		}
+    "homepage": "http://dlang.org/",
+    "version": "2.065.0",
+    "license": "Boostv1.0, https://raw.githubusercontent.com/D-Programming-Language/dmd/master/src/backendlicense.txt",
+    "url": "http://downloads.dlang.org/releases/2014/dmd.2.065.0.zip",
+    "hash": "sha1:cff1d0978736b2c83c63450fbc0a0692c7ecba68",
+    "extract_dir": "dmd2/windows",
+    "bin": ["bin/dmd.exe", "bin/rdmd.exe"],
+    "post_install": "
+        function getVSPath($version) {
+            \"hklm:/software/wow6432node/microsoft/visualstudio/$version/setup/vc\", 
+            \"hklm:/software/microsoft/visualstudio/$version/setup/vc\" |
+            ? {(test-path $_)} | select-object -first 1 | % {(get-itemproperty $_).productdir}
+        }
+        function getWSDKPath($version) {
+            \"hklm:/software/wow6432node/microsoft/microsoft sdks/windows/$version\",
+            \"hklm:/software/microsoft/microsoft sdks/windows/$version\" |
+            ? {(test-path $_)} | select-object -first 1 | % {(get-itemproperty $_).installationfolder}
+        }
 
-		function getWSDKPath($version) {
-			\"hklm:/software/wow6432node/microsoft/microsoft sdks/windows/$version\",
-			\"hklm:/software/microsoft/microsoft sdks/windows/$version\" |
-			? {(test-path $_)} | select-object -first 1 | % {(get-itemproperty $_).installationfolder}
-		}
-
-		$vspath = '12.0', '11.0', '10.0', '9.0' | % {getVSPath($_)} | ? {$_} | select -first 1
-		$wdkpath = 'v8.1a', 'v8.0a', 'v7.1a', 'v7.0a', 'v6.0a' | % {getWSDKPath($_)} | ? {$_} | select -first 1
-		$vspath, $wdkpath
-	"
+        $vsprefixmap = @{
+            '12.0' = ';VC2013 ';
+            '11.0' = ';VC2012 ';
+            '10.0' = ';VC2010 ';
+            '9.0' = ';VC2008 ';
+        }
+        $vspath, $vsprefix = $vsprefixmap.keys | % {$out = @{}} {$out[$_] = getVSPath($_)} {$out.getenumerator()} |
+            ? {$_.value} | sort @{e={$_.key -as [float]}; descending=$true} | select -first 1 | % {$_.value, $vsprefixmap[$_.key]}
+        $wdkpath = 'v8.1a', 'v8.0a', 'v7.1a', 'v7.0a', 'v6.0a' | % {getWSDKPath($_)} | ? {$_} | select -first 1
+        if (!$vspath) {
+            'Could not detect Visual Studio (2008-2013 are supported). Using defaults.'
+        }
+        if (!$wdkpath) {
+            'Could not detect Windows SDK (6.0A-8.1A are supported). Using defaults.'
+        }
+    "
 }

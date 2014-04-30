@@ -1,0 +1,8 @@
+{
+    "homepage": "http://code.dlang.org/",
+    "version": "0.9.21",
+    "license": "https://raw.githubusercontent.com/rejectedsoftware/dub/master/LICENSE.txt",
+    "url": "http://code.dlang.org/files/dub-0.9.21-windows-x86.zip",
+    "hash": "sha1:a0fcd85097f454dd2b08b9ddaac0937834f14b31",
+    "bin": "dub.exe"
+}

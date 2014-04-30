@@ -17,21 +17,31 @@
             \"hklm:/software/microsoft/microsoft sdks/windows/$version\" |
             ? {(test-path $_)} | select-object -first 1 | % {(get-itemproperty $_).installationfolder}
         }
+        function replaceLine($filename, $oldLine, $newLine) {
+            $content = gc $filename | % {$_.replace($oldLine, $newLine)}
+            $content | sc $filename
+        }
 
         $vsprefixmap = @{
             '12.0' = ';VC2013 ';
             '11.0' = ';VC2012 ';
             '10.0' = ';VC2010 ';
-            '9.0' = ';VC2008 ';
+            '9.0'  = ';VC2008 ';
         }
-        $vspath, $vsprefix = $vsprefixmap.keys | % {$out = @{}} {$out[$_] = getVSPath($_)} {$out.getenumerator()} |
+        $vspath, $vsprefix = $vsprefixmap.keys | % {$out = @{}} {$out[$_] = getVSPath $_} {$out.getenumerator()} |
             ? {$_.value} | sort @{e={$_.key -as [float]}; descending=$true} | select -first 1 | % {$_.value, $vsprefixmap[$_.key]}
-        $wdkpath = 'v8.1a', 'v8.0a', 'v7.1a', 'v7.0a', 'v6.0a' | % {getWSDKPath($_)} | ? {$_} | select -first 1
+        $wdkpath = 'v8.1a', 'v8.0a', 'v7.1a', 'v7.0a', 'v6.0a' | % {getWSDKPath $_} | ? {$_} | select -first 1
+        $inifile = \"$dir/bin/sc.ini\"
         if (!$vspath) {
             'Could not detect Visual Studio (2008-2013 are supported). Using defaults.'
+        }
+        else {
+            replaceLine $inifile $vsprefix ''
         }
         if (!$wdkpath) {
             'Could not detect Windows SDK (6.0A-8.1A are supported). Using defaults.'
         }
+
+        gc $inifile
     "
 }

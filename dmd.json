@@ -37,11 +37,10 @@
         }
         else {
             replaceLine $inifile $vsprefix ''
+            replaceLine $inifile ';VCINSTALLDIR=' \"VCINSTALLDIR=$vspath\"
         }
         if (!$wdkpath) {
             'Could not detect Windows SDK (6.0A-8.1A are supported). Using defaults.'
         }
-
-        gc $inifile
     "
 }

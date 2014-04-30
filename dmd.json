@@ -21,6 +21,10 @@
             $content = gc $filename | % {$_.replace($oldLine, $newLine)}
             $content | sc $filename
         }
+        function removeTrailingBackslash($path) {
+            if ($path[-1] -eq '\\') { $path.substring(0, $path.length - 1) }
+            else { $path }
+        }
 
         $vsprefixmap = @{
             '12.0' = ';VC2013 ';
@@ -31,6 +35,8 @@
         $vspath, $vsprefix = $vsprefixmap.keys | % {$out = @{}} {$out[$_] = getVSPath $_} {$out.getenumerator()} |
             ? {$_.value} | sort @{e={$_.key -as [float]}; descending=$true} | select -first 1 | % {$_.value, $vsprefixmap[$_.key]}
         $wdkpath = 'v8.1a', 'v8.0a', 'v7.1a', 'v7.0a', 'v6.0a' | % {getWSDKPath $_} | ? {$_} | select -first 1
+        $vspath = removeTrailingBackslash $vspath
+        $wdkpath = removeTrailingBackslash $wdkpath
         $inifile = \"$dir/windows/bin/sc.ini\"
         if (!$vspath) {
             'Could not detect Visual Studio (2008-2013 are supported). Using defaults.'

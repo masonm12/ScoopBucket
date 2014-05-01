@@ -14,5 +14,9 @@
     },
     "bin": [
         ["Console.exe", "consolez"]
-    ]
+    ],
+    "checkver": {
+        "url": "https://github.com/cbucher/console/wiki/Downloads",
+        "re": "release version ([0-9.]+)</h4>"
+    }
 }

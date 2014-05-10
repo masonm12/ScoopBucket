@@ -8,15 +8,43 @@
     "bin": ["windows/bin/dmd.exe", "windows/bin/rdmd.exe"],
     "checkver": "D ([0-9.]+)</a>",
     "post_install": "
-        function getVSPath($version) {
-            \"hklm:/software/wow6432node/microsoft/visualstudio/$version/setup/vc\", 
-            \"hklm:/software/microsoft/visualstudio/$version/setup/vc\" |
-            ? {(test-path $_)} | select-object -first 1 | % {(get-itemproperty $_).productdir}
+        $vsPrefixMap = @{
+            '12.0' = ';VC2013 ';
+            '11.0' = ';VC2012 ';
+            '10.0' = ';VC2010 ';
+            '9.0'  = ';VC2008 ';
         }
-        function getWSDKPath($version) {
-            \"hklm:/software/wow6432node/microsoft/microsoft sdks/windows/$version\",
-            \"hklm:/software/microsoft/microsoft sdks/windows/$version\" |
-            ? {(test-path $_)} | select-object -first 1 | % {(get-itemproperty $_).installationfolder}
+        $wdkRegKeyMap = @{
+            '8.1' = @('Microsoft/Windows Kits/Installed Roots', 'KitsRoot81');
+            '8.0' = @('Microsoft/Windows Kits/Installed Roots', 'KitsRoot');
+            '7.11' = @('Microsoft/Microsoft SDKs/Windows/v7.1a', 'InstallationFolder');
+            '7.01' = @('Microsoft/Microsoft SDKs/Windows/v7.0a', 'InstallationFolder');
+            '6.01' = @('Microsoft/Microsoft SDKs/Windows/v6.0a', 'InstallationFolder');
+        }
+
+        function getSoftwareRegRoot() {
+            $regRoot = 'HKLM:/SOFTWARE/Wow6432Node'
+            # if an pointer is 4 bytes, then we're 32-bit!
+            if ([IntPtr]::size -eq 4) {
+                $regRoot = 'HKLM:/SOFTWARE'
+            }
+
+            $regRoot
+        }
+        function getVSPath($version) {
+            $root = getSoftwareRegRoot
+            $vcPath = Join-Path $root \"Microsoft/VisualStudio/$version/Setup/VC\"
+            if (Test-Path $vcPath) {
+                $(Get-ItemProperty $vcPath).ProductDir
+            }
+        }
+        function getWDKPath($version) {
+            $regRoot = getSoftwareRegRoot
+            $wdkRegInfo = $wdkRegKeyMap[$version]
+            $wdkPath = Join-Path $regRoot $wdkRegInfo[0]
+            if (Test-Path $wdkPath) {
+                $(Get-ItemProperty $wdkPath).$($wdkRegInfo[1])
+            }
         }
         function replaceLine($filename, $oldLine, $newLine) {
             $content = gc $filename | % {$_.replace($oldLine, $newLine)}
@@ -27,15 +55,9 @@
             else { $path }
         }
 
-        $vsprefixmap = @{
-            '12.0' = ';VC2013 ';
-            '11.0' = ';VC2012 ';
-            '10.0' = ';VC2010 ';
-            '9.0'  = ';VC2008 ';
-        }
-        $vspath, $vsprefix = $vsprefixmap.keys | % {$out = @{}} {$out[$_] = getVSPath $_} {$out.getenumerator()} |
-            ? {$_.value} | sort @{e={$_.key -as [float]}; descending=$true} | select -first 1 | % {$_.value, $vsprefixmap[$_.key]}
-        $wdkpath = 'v8.1a', 'v8.0a', 'v7.1a', 'v7.0a', 'v6.0a' | % {getWSDKPath $_} | ? {$_} | select -first 1
+        $vspath, $vsprefix = $vsPrefixMap.keys | % {$out = @{}} {$out[$_] = getVSPath $_} {$out.getenumerator()} |
+            ? {$_.value} | sort @{e={$_.key -as [float]}; descending=$true} | select -first 1 | % {$_.value, $vsPrefixMap[$_.key]}
+        $wdkPath = $wdkRegKeyMap.GetEnumerator() | % {$_.Key} | sort -descending | % {getWDKPath $_} | select -first 1
         $vspath = removeTrailingBackslash $vspath
         $wdkpath = removeTrailingBackslash $wdkpath
         $inifile = \"$dir/windows/bin/sc.ini\"

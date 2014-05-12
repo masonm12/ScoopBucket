@@ -7,7 +7,7 @@
     "bin": "dub.exe",
     "depends": "dmd",
     "checkver": {
-    	"url": "http://code.dlang.org/download",
-    	"re": "DUB ([0-9.]+) binary tarball for Linux"
-	}
+        "url": "http://code.dlang.org/download",
+        "re": "DUB ([0-9.]+) binary tarball for Linux"
+    }
 }

@@ -7,7 +7,7 @@
     "extract_dir": "PSVC-master",
     "bin": "bin\\psvc.ps1",
     "checkver": {
-    	"url": "https://raw.githubusercontent.com/masonm12/PSVC/master/bin/psvc.ps1",
-    	"re": "Version = '([0-9.]+)'"
-	}
+        "url": "https://raw.githubusercontent.com/masonm12/PSVC/master/bin/psvc.ps1",
+        "re": "Version = '([0-9.]+)'"
+    }
 }

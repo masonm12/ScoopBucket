@@ -2,12 +2,12 @@
     "homepage": "https://github.com/masonm12/PSVC",
     "version": "1.0.0",
     "license": "MIT",
-    "url": "https://github.com/masonm12/PSVC/archive/master.zip",
+    "url": "https://github.com/masonm12/PSVC/archive/v1.0.0.zip",
     "hash": "sha1:8aaec387b1cd6bbad4400b7255af035eb7467b81",
     "extract_dir": "PSVC-master",
     "bin": "bin\\psvc.ps1",
     "checkver": {
-        "url": "https://raw.githubusercontent.com/masonm12/PSVC/master/bin/psvc.ps1",
-        "re": "Version = '([0-9.]+)'"
+        "url": "https://github.com/masonm12/PSVC/tags",
+        "re": "/masonm12/PSVC/releases/tag/v([0-9.]+)"
     }
 }

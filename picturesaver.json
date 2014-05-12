@@ -6,7 +6,7 @@
     "hash": "sha1:09059e6bc7b3ff15dea792143d4cc624a795a646",
     "bin": "PictureSaver.exe",
     "checkver": {
-        "url": "https://github.com/masonm12/PictureSaver/releases",
-        "re": "<span class=\"css-truncate-target\">v([0-9.]+)</span>"
+        "url": "https://github.com/masonm12/PictureSaver/tags",
+        "re": "/masonm12/PictureSaver/releases/tag/v([0-9.]+)"
     }
 }

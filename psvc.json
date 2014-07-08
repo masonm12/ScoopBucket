@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "license": "MIT",
     "url": "https://github.com/masonm12/PSVC/archive/v1.0.0.zip",
-    "hash": "sha1:8aaec387b1cd6bbad4400b7255af035eb7467b81",
+    "hash": "sha1:e03c91e9813c2a1eb0295cc05103a6e0d17daab5",
     "extract_dir": "PSVC-master",
     "bin": "bin\\psvc.ps1",
     "checkver": {

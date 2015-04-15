@@ -1,6 +1,7 @@
 param($app) #optionally pass an app name to just check one app
 
-$bin = split-path (scoop which scoop)
+$localdata = $env:LOCALAPPDATA
+$bin = "$localdata\scoop\apps\scoop\current\bin"
 $checkver = "$bin\checkver.ps1"
 $dir = "$psscriptroot\.." # checks the parent dir
 

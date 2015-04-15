@@ -1,12 +1,11 @@
 {
     "homepage": "http://dlang.org/",
-    "version": "2.066.1",
-    "license": "Boostv1.0, https://raw.githubusercontent.com/D-Programming-Language/dmd/master/src/backendlicense.txt",
-    "url": "http://downloads.dlang.org/releases/2014/dmd.2.066.1.zip",
-    "hash": "sha1:d0f2e437558b54692a472edf9174e72114c2e02e",
+    "version": "2.067.0",
+    "license": "Boostv1.0, GPL, Artistic",
+    "url": "http://downloads.dlang.org/releases/2.x/2.067.0/dmd.2.067.0.windows.zip",
+    "hash": "sha1:2b7e9cf49dd80d59f68062f8d7e38d18c23a61e4",
     "extract_dir": "dmd2",
     "bin": ["windows\\bin\\dmd.exe", "windows\\bin\\rdmd.exe"],
-
     "checkver": {
         "url": "http://dlang.org/download.html",
         "re": "<span>D ([0-9.]+)</span>"

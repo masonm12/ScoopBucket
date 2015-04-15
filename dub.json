@@ -1,9 +1,9 @@
 {
     "homepage": "http://code.dlang.org/",
-    "version": "0.9.22",
+    "version": "0.9.23",
     "license": "https://raw.githubusercontent.com/rejectedsoftware/dub/master/LICENSE.txt",
-    "url": "http://code.dlang.org/files/dub-0.9.22-windows-x86.zip",
-    "hash": "sha1:ada1179b70e41f42bc96a6c5dbc8eee0d71dc6db",
+    "url": "http://code.dlang.org/files/dub-0.9.23-windows-x86.zip",
+    "hash": "sha1:76f74ab750b5dcf8b0ab84904851939c55d221a9",
     "bin": "dub.exe",
     "depends": "dmd",
     "checkver": {

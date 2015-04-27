@@ -1,9 +1,9 @@
 {
     "homepage": "http://dlang.org/",
-    "version": "2.067.0",
+    "version": "2.067.1",
     "license": "Boostv1.0, GPL, Artistic",
-    "url": "http://downloads.dlang.org/releases/2.x/2.067.0/dmd.2.067.0.windows.zip",
-    "hash": "sha1:2b7e9cf49dd80d59f68062f8d7e38d18c23a61e4",
+    "url": "http://downloads.dlang.org/releases/2.x/2.067.1/dmd.2.067.1.windows.zip",
+    "hash": "sha1:8ea799291320f61fbfc0618351af6adf10107334",
     "extract_dir": "dmd2",
     "bin": ["windows\\bin\\dmd.exe", "windows\\bin\\rdmd.exe"],
     "checkver": {

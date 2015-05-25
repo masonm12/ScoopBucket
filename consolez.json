@@ -1,10 +1,10 @@
 {
-    "homepage": "https://github.com/cbucher/console",
+    "homepage": "http://github.com/cbucher/console",
     "version": "1.14.0.15129",
     "license": "GPLv2",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/cbucher/console/releases/download/1.14.0/ConsoleZ.x64.1.14.0.15129.zip",
+            "url": "http://github.com/cbucher/console/releases/download/1.14.0/ConsoleZ.x64.1.14.0.15129.zip",
             "hash": "sha1:9ae5da15ac0496992adf96e61c85c88902510402"
         }
     },
@@ -12,7 +12,7 @@
         ["Console.exe", "consolez"]
     ],
     "checkver": {
-        "url": "https://github.com/cbucher/console/wiki/Downloads",
+        "url": "http://github.com/cbucher/console/wiki/Downloads",
         "re": "release version ([0-9.]+)</h4>"
     }
 }

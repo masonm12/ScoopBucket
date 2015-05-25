@@ -1,13 +1,13 @@
 {
     "homepage": "https://github.com/masonm12/PoshVC",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "license": "MIT",
-    "url": "https://github.com/masonm12/PoshVC/archive/v1.0.1.zip",
-    "hash": "5c097162fb95d1aa55627c66d2241528a75c6ff47be6c247fc421b7df4f5dc3a",
-    "extract_dir": "PoshVC-1.0.1",
+    "url": "https://github.com/masonm12/PoshVC/archive/v1.1.0.zip",
+    "hash": "8f41e6755d0961e29039cde9e71c6f21686d9af15f4ab4189646442d752291c1",
+    "extract_dir": "PoshVC-1.1.0",
     "bin": "bin\\poshvc.ps1",
     "checkver": {
         "url": "https://github.com/masonm12/PoshVC/tags",
-        "re": "/masonm12/PSVC/releases/tag/v([0-9.]+)"
+        "re": "/masonm12/PoshVC/releases/tag/v([0-9.]+)"
     }
 }

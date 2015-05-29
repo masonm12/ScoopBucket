@@ -6,6 +6,7 @@
     "hash": "c03fc051587ee6ef1e32f57a24718c83f945ed918d793aa554c44de91bb0e826",
     "extract_dir": "SavePics-2.0.0",
     "bin": "savepics.bat",
+    "depends": "python",
     "checkver": {
         "url": "http://github.com/masonm12/SavePics/tags",
         "re": "/masonm12/SavePics/releases/tag/v([0-9.]+)"

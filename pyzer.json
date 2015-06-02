@@ -1,0 +1,13 @@
+{
+    "homepage": "https://github.com/masonm12/Pyzer",
+    "version": "1.0.0",
+    "license": "MIT",
+    "url": "https://github.com/masonm12/Pyzer/archive/v1.0.0.zip",
+    "hash": "7dbc1ec9f466c41dd63662d482edb060ac3a64d8a5e9fa3d7a52dd9be8f71078",
+    "extract_dir": "Pyzer-1.0.0",
+    "bin": "pyzer.bat",
+    "checkver": {
+        "url": "https://github.com/masonm12/Pyzer/tags",
+        "re": "/masonm12/Pyzer/releases/tag/v([0-9.]+)"
+    }
+}

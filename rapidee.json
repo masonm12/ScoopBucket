@@ -1,0 +1,12 @@
+{
+    "homepage": "http://www.rapidee.com",
+    "version": "8.0 build 929",
+    "license": "http://www.rapidee.com/en/license",
+    "url": "http://www.rapidee.com/download/archive/929/RapidEEx64.zip",
+    "hash": "5ade4c1e71942c02b8b98692e1b96dde0ff5bb6ee4719cee74b1ec30f274d4be",
+    "bin": "rapidee.exe",
+    "checkver": {
+        "url": "http://www.rapidee.com/en/download",
+        "re": "([0-9.]+ build [0-9]+)"
+    }
+}

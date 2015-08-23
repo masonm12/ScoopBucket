@@ -1,6 +1,6 @@
 {
     "homepage": "http://www.rapidee.com",
-    "version": "8.0 build 929",
+    "version": "929",
     "license": "http://www.rapidee.com/en/license",
     "architecture": {
         "64bit": {
@@ -9,8 +9,5 @@
         }
     },
     "bin": "rapidee.exe",
-    "checkver": {
-        "url": "http://www.rapidee.com/en/download",
-        "re": "([0-9.]+ build [0-9]+)"
-    }
+    "checkver": "[0-9.]+ build ([0-9]+)"
 }

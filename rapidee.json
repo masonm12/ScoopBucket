@@ -9,5 +9,8 @@
         }
     },
     "bin": "rapidee.exe",
-    "checkver": "[0-9.]+ build ([0-9]+)"
+    "checkver": "[0-9.]+ build ([0-9]+)",
+    "post_install": "
+        echo $dir
+    "
 }

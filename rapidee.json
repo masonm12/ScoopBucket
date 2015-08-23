@@ -11,6 +11,9 @@
     "bin": "rapidee.exe",
     "checkver": "[0-9.]+ build ([0-9]+)",
     "post_install": "
-        echo $dir
+        $inifile = join-path $dir rapidee.ini
+        if (!(test-path \"$inifile\")) {
+            '' > $inifile
+        }
     "
 }
